@@ -6,6 +6,14 @@ const mongoose = require('mongoose');
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://159.203.166.19:4200');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:7020');
+  	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    next();
+});
+
 Genre =require('./models/genre');
 Book =require('./models/book');
 
@@ -22,8 +30,8 @@ app.get('/api/genres', (req, res) => {
 		if(err){
 			throw err;
 		}
-		res.json(genres);
-	});
+		res.json({"genre":genres});
+	});1
 });
 
 app.post('/api/genres', (req, res) => {
@@ -62,7 +70,7 @@ app.get('/api/books', (req, res) => {
 		if(err){
 			throw err;
 		}
-		res.json(books);
+		res.json({"book":books});
 	});
 });
 
