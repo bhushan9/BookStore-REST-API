@@ -7,7 +7,7 @@ app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://159.203.166.19:4200');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:7020');
   	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
@@ -33,6 +33,19 @@ app.get('/api/genres', (req, res) => {
 		res.json({"genre":genres});
 	});1
 });
+
+app.get('/api/genres/:name', (req, res) =>{
+	var name = req.params.name;
+	console.log(name);
+	Genre.getBooks(name, (err, books) =>{
+		if(err){
+			throw err;
+		}
+		res.json({"book":books});
+
+	});
+});
+
 
 app.post('/api/genres', (req, res) => {
 	var genre = req.body;

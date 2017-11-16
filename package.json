@@ -1,4 +1,3 @@
-
 {
   "name": "bookstore",
   "version": "1.0.0",
@@ -7,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies":{
-  	"express":"*",
-  	"body-parser":"*",
-  	"mongoose":"*"
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongoose": "*"
   }
 }

@@ -18,13 +18,18 @@ const Genre = module.exports = mongoose.model('Genre', genreSchema);
 // Get Genres
 module.exports.getGenres = (callback, limit) => {
 	Genre.find(callback).limit(limit);
-}
+} 
 
 // Add Genre
 module.exports.addGenre = (genre, callback) => {
 	Genre.create(genre, callback);
 }
 
+// Get list of books with matching genre
+module.exports.getBooks = (Name, callback) =>{
+	console.log("inside "+ Name)
+	Book.find({ genre: Name}, callback);
+}
 // Update Genre
 module.exports.updateGenre = (id, genre, options, callback) => {
 	var query = {_id: id};
